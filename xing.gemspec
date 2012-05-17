@@ -2,23 +2,29 @@
 $:.push File.expand_path("../lib", __FILE__)
 require "xing/version"
 
-Gem::Specification.new do |s|
-  s.name        = "xing"
-  s.version     = Xing::VERSION
-  s.authors     = ["Magdalena Sikorska"]
-  s.email       = ["madzia.sikorska@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{Ruby wrapper for Xing API}
-  s.description = %q{Ruby wrapper for Xing API}
+Gem::Specification.new do |gem|
+  gem.name        = "xing"
+  gem.version     = Xing::VERSION
+  gem.authors     = ["Magdalena Sikorska"]
+  gem.email       = ["madzia.sikorska@gmail.com"]
+  gem.homepage    = 'http://github.com/elrosa/xing'
+  gem.summary     = %q{Ruby wrapper for Xing API}
+  gem.description = gem.summary
 
-  s.rubyforge_project = "xing"
+  gem.rubyforge_project = "xing"
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.require_paths = ["lib"]
+  gem.files = `git ls-files`.split("\n")
+  gem.require_paths = ['lib']
+  gem.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
 
-  # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
+  gem.add_dependency 'hashie', '~> 1.2.0'
+  gem.add_dependency 'multi_json', '~> 1.0.3'
+  gem.add_dependency 'oauth', '~> 0.4.5'
+
+  gem.add_development_dependency 'json', '~> 1.6'
+  gem.add_development_dependency 'rake', '~> 0.9'
+  gem.add_development_dependency 'rdoc', '~> 3.8'
+  gem.add_development_dependency 'rspec', '~> 2.6'
+  gem.add_development_dependency 'webmock', '~> 1.8.7'
+
 end
