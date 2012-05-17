@@ -1,8 +1,12 @@
 module Xing
   class Post < Xing::Base
-    lazy_attr_reader :activities, :commentable, :comments, :deletable, :id, :likable, :liked, :like_count,
-                     :posted_at, :sharable, :text, :type, :user
+    lazy_attr_reader :action, :activities, :commentable, :comments, :deletable, :id,
+                     :likable, :liked, :like_count, :posted_at, :sharable, :text, :type, :user
 
+    # @return String
+    def action
+      fail "Not implemented"
+    end
 
     # @return [Xing::Activity]
     def activities
@@ -27,12 +31,12 @@ module Xing
     end
 
     def liked
-      fail "Not implemented"
+      @liked ||= @attrs["likes"]["current_user_liked"] unless @attrs["likes"].nil?
     end
 
     # @return Fixnum
     def like_count
-      fail "Not implemented"
+      @like_count ||= @attrs["likes"]["amount"] unless @attrs["likes"].nil?
     end
 
     # @return Time

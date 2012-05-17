@@ -59,7 +59,8 @@ describe Xing::Post do
   end
 
   it "should have like count" do
-    @post.comments.should be_instance_of(Array)
+    @post.like_count.should be_instance_of(Fixnum)
+    @post.like_count.should == 0
   end
 
 end
