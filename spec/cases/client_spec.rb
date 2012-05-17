@@ -15,6 +15,7 @@ describe Xing::Client do
       stub_http_request(:get, /https:\/\/api.xing.com\/v1\/users\/me\/network_feed.*/).
           to_return(:body => "{}")
       posts = client.network_feed
+      posts.length.should == 0
       posts.should be_an_instance_of(Array)
     end
 
