@@ -10,7 +10,7 @@ module Xing
 
     # @return [Xing::Activity]
     def activities
-      fail "Not implemented"
+      @activities ||= @attrs["objects"].map{|activity| Xing::Activity.new(activity)} unless @attrs["objects"].nil?
     end
 
     def commentable
@@ -19,7 +19,7 @@ module Xing
 
     # @return [Xing::Comments]
     def comments
-      fail "Not implemented"
+      @comments ||= @attrs["comments"].nil? ? [] : @attrs["comments"]["latest_comments"].map{|comment| Xing::Comment.new(comment)}
     end
 
     def deletable
@@ -50,11 +50,6 @@ module Xing
 
     # @return String
     def text
-      fail "Not implemented"
-    end
-
-    # @return String
-    def type
       fail "Not implemented"
     end
 

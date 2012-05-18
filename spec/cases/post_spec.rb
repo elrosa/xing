@@ -5,15 +5,15 @@ describe Xing::Post do
   before do
     client.stub(:consumer).and_return(consumer)
     client.authorize_from_access('atoken', 'asecret')
-  end
-  let(:client){Xing::Client.new('token', 'secret')}
-  let(:consumer){OAuth::Consumer.new('token', 'secret', {:site => 'https://api.xing.com'})}
-
-
-  before :each do
     @fixture = MultiJson.load(fixture "post.json")
     @post = Xing::Post.new(@fixture)
   end
+
+  let(:client){Xing::Client.new('token', 'secret')}
+  let(:consumer){OAuth::Consumer.new('token', 'secret', {:site => 'https://api.xing.com'})}
+
+  #before :each do
+  #end
 
   it "should contain correct posting date" do
     @post.posted_at.should == Time.parse(@fixture["created_at"]).utc
@@ -56,6 +56,8 @@ describe Xing::Post do
 
   it "should have comment list" do
     @post.comments.should be_instance_of(Array)
+    @post.comments.length.should == 1
+    @post.comments.first.should be_instance_of(Xing::Comment)
   end
 
   it "should have like count" do

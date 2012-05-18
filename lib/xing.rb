@@ -18,5 +18,6 @@ module Xing
   autoload :Base,     "xing/base"
   autoload :Post,     "xing/post"
   autoload :User,     "xing/user"
-  autoload :Commment, "xing/comment"
+  autoload :Comment,  "xing/comment"
+  autoload :Activity, "xing/activity"
 end
