@@ -4,11 +4,11 @@ describe Xing::Comment do
 
   before do
     client.stub(:consumer).and_return(consumer)
-    client.authorize_from_access('atoken', 'asecret')
   end
 
-  let(:client){Xing::Client.new('token', 'secret')}
+  let(:client) {Xing::Client.new(:consumer_key => "consumer_key", :consumer_secret => "consumer_secret", :oauth_token => "oauth_token", :oauth_token_secret => "oauth_token_secret")}
   let(:consumer){OAuth::Consumer.new('token', 'secret', {:site => 'https://api.xing.com'})}
+
 
   before :each do
     @fixture = MultiJson.load(fixture "post.json")

@@ -1,18 +1,35 @@
 module Xing
 
   class Client
-    include Helpers::Authorization
     include Helpers::Request
     include Api::Reader
     include Api::Writer
 
     attr_reader :consumer_token, :consumer_secret, :consumer_options
 
-    def initialize(ctoken=Xing.token, csecret=Xing.secret, options={})
-      @consumer_token   = ctoken
-      @consumer_secret  = csecret
-      @consumer_options = options
+    def initialize(options={})
+      @consumer_token   = options[:consumer_token]
+      @consumer_secret  = options[:consumer_secret]
+      @auth_token       = options[:oauth_token]
+      @auth_secret      = options[:oauth_token_secret]
     end
+
+    def consumer
+      @consumer ||= ::OAuth::Consumer.new(@consumer_token, @consumer_secret, DEFAULT_OAUTH_OPTIONS)
+    end
+
+    def access_token
+      @access_token ||= ::OAuth::AccessToken.new(consumer, @auth_token, @auth_secret)
+    end
+
+    protected
+      DEFAULT_OAUTH_OPTIONS = {
+        :site => "https://api.xing.com",
+        :request_token_path => "/v1/request_token",
+        :authorize_path => "/v1/authorize",
+        :access_token_path => "/v1/access_token"
+      }
+
 
   end
 
