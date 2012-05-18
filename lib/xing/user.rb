@@ -14,8 +14,14 @@ module Xing
     end
 
     # @return String
-    def profile_url
+    def url
       @profile_url ||= @attrs["permalink"] unless @attrs["permalink"].nil?
+    end
+
+    # @param other [Xing::User]
+    # @return [Boolean]
+    def ==(other)
+      super || (other.class == self.class && other.id == self.id)
     end
 
   end

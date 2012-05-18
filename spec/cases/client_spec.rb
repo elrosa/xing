@@ -23,7 +23,7 @@ describe Xing::Client do
       stub_http_request(:get, /https:\/\/api.xing.com\/v1\/users\/me\/network_feed.*/).
           to_return(:body => fixture("network_feed.json"))
       posts = client.network_feed
-      posts.length.should == 5
+      posts.length.should == 9
       posts.first.should be_an_instance_of(Xing::Post)
     end
 

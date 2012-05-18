@@ -10,14 +10,17 @@ module Xing
     end
   end
 
-  autoload :Api,      "xing/api"
-  autoload :Client,   "xing/client"
-  autoload :Mash,     "xing/mash"
-  autoload :Errors,   "xing/errors"
-  autoload :Helpers,  "xing/helpers"
-  autoload :Base,     "xing/base"
-  autoload :Post,     "xing/post"
-  autoload :User,     "xing/user"
-  autoload :Comment,  "xing/comment"
-  autoload :Activity, "xing/activity"
+  autoload :Activity,         "xing/activity"
+  autoload :Api,              "xing/api"
+  autoload :Base,             "xing/base"
+  autoload :Client,           "xing/client"
+  autoload :Comment,          "xing/comment"
+  autoload :CommpanyProfile,  "xing/company_profile"
+  autoload :Errors,           "xing/errors"
+  autoload :Event,            "xing/event"
+  autoload :Group,            "xing/group"
+  autoload :Helpers,          "xing/helpers"
+  autoload :Mash,             "xing/mash"
+  autoload :Post,             "xing/post"
+  autoload :User,             "xing/user"
 end
