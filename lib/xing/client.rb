@@ -2,6 +2,7 @@ module Xing
 
   class Client
     include Helpers::Request
+    include Helpers::Authorization
     include Api::Reader
     include Api::Writer
 

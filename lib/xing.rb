@@ -2,7 +2,7 @@ require 'oauth'
 
 module Xing
   class << self
-    attr_accessor :token, :secret
+    attr_accessor :token, :secret, :default_profile_fields
 
     def configure
       yield self
