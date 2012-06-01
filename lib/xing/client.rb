@@ -23,15 +23,6 @@ module Xing
       @access_token ||= ::OAuth::AccessToken.new(consumer, @auth_token, @auth_secret)
     end
 
-    protected
-      DEFAULT_OAUTH_OPTIONS = {
-        :site => "https://api.xing.com",
-        :request_token_path => "/v1/request_token",
-        :authorize_path => "/v1/authorize",
-        :access_token_path => "/v1/access_token"
-      }
-
-
   end
 
 end

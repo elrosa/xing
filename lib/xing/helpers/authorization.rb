@@ -9,11 +9,6 @@ module Xing
         :access_token_path => "/v1/access_token"
       }
 
-      def consumer
-        @consumer ||= ::OAuth::Consumer.new(@consumer_token, @consumer_secret, DEFAULT_OAUTH_OPTIONS)
-        ap @consumer
-      end
-
       # Note: If using oauth with a web app, be sure to provide :oauth_callback.
       # Options:
       #   :oauth_callback => String, url that LinkedIn should redirect to
