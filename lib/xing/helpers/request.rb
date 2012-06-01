@@ -2,7 +2,6 @@ require 'multi_json'
 
 module Xing
   module Helpers
-
     module Request
 
       API_PATH = '/v1'
@@ -42,6 +41,7 @@ module Xing
           case response.code.to_i
           when 401
             data = Mash.from_json(response.body)
+            ap data
             raise Xing::Errors::UnauthorizedError.new(data), "(#{data.status}): #{data.message}"
           when 400, 403
             data = Mash.from_json(response.body)
@@ -70,7 +70,7 @@ module Xing
           end
           uri.to_s
         end
-    end
 
+    end
   end
 end
