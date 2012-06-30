@@ -2,7 +2,7 @@
 Ruby wrapper for the [Xing API](https://dev.xing.com).
 
 ## Installation
-    [sudo] gem install linkedin
+    [sudo] gem install xing
 
 ## Usage
 
@@ -14,7 +14,7 @@ Xing's API uses Oauth for authentication. Luckily, the Xing gem hides most of th
     require 'xing'
 
     # Visit the [XING Developer Portal](https://dev.xing.com/applications) to get your API keys.
-    client = Xing::Client.new('your_consumer_key', 'your_consumer_secret')
+    client = Xing::Client.new(:consumer_key => 'your_consumer_key', :consumer_secret => 'your_consumer_secret')
     rtoken = client.request_token.token
     rsecret = client.request_token.secret
 
@@ -28,7 +28,7 @@ Xing's API uses Oauth for authentication. Luckily, the Xing gem hides most of th
     => ["xxxxxxxxxxxxxxxxxxxx", "yyyyyyyyyyyyyyyyyyyy"] # <= save these for future requests
 
     # or authorize from previously fetched access keys
-    c.authorize_from_access("xxxxxxxxxxxxxxxxxxxx", "yyyyyyyyyyyyyyyyyyyy")
+    client.authorize_from_access("xxxxxxxxxxxxxxxxxxxx", "yyyyyyyyyyyyyyyyyyyy")
 
     # you're now free to move about the cabin, call any API method
 
