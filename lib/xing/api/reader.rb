@@ -3,7 +3,7 @@ module Xing
     module Reader
 
       def network_feed options={}
-        path = "/users/" + user_id(options) + "/network_feed" + params(options).to_s
+        path = person_path(options) + "/network_feed" + params(options).to_s        
         raw_posts = get(path, options).fetch("network_activities", [])
         raw_posts.map{|post|
           Xing::Post.new(post)
