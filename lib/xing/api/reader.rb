@@ -13,7 +13,12 @@ module Xing
       def profile(options={})
         path = person_path(options)
         simple_query(path, options)
-      end 
+      end
+
+      def contacts options={}
+        path = person_path(options) + "/contacts"
+        simple_query(path, options)
+      end
 
       protected
         DEFAULT_PARAMS = {
