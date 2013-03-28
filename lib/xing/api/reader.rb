@@ -3,7 +3,7 @@ module Xing
     module Reader
 
       def network_feed options={}
-        path = person_path(options) + "/network_feed" + params(options).to_s        
+        path = person_path(options) + "/network_feed" + params(options).to_s
         raw_posts = get(path, options).fetch("network_activities", [])
         raw_posts.map{|post|
           Xing::Post.new(post)
@@ -16,7 +16,10 @@ module Xing
       end
 
       def contacts options={}
-        path = person_path(options) + "/contacts"
+        path = "/users/me/contacts"
+        if fields = options.delete(:fields)
+          path += "?fields=#{fields}"
+        end
         simple_query(path, options)
       end
 
