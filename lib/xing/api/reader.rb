@@ -17,8 +17,8 @@ module Xing
 
       def contacts options={}
         path = "/users/me/contacts"
-        if fields = options.delete(:fields)
-          path += "?fields=#{fields}"
+        if fields = options.delete(:user_fields)
+          path += "?user_fields=#{fields}"
         end
         simple_query(path, options)
       end
