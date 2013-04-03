@@ -1,0 +1,12 @@
+{
+    "contacts": {
+        "total": 5,
+        "users": [{
+            "display_name": "Prof. Tammo Freese",
+            "id": "3228492_025d41"
+        }, {
+            "display_name": "Jonas Wunderlich",
+            "id": "3312533_101654"
+        }]
+    }
+}
