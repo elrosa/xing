@@ -20,7 +20,7 @@ module Xing
         if fields = options.delete(:user_fields)
           path += "?user_fields=#{fields}"
         end
-        simple_query(path, options)
+        simple_query(path, options)['contacts']
       end
 
       protected

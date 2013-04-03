@@ -25,7 +25,19 @@ describe Xing::Client do
       posts.length.should == 9
       posts.first.should be_an_instance_of(Xing::Post)
     end
+  end
 
+  describe "#contacts" do
+    before do
+      stub_request(:get, "https://api.xing.com/v1/users/me/contacts").
+          to_return(:status => 200, :body => fixture("contacts.json"), :headers => {})
+    end
+
+    subject { client.contacts }
+
+    it {should be_a_kind_of Hash}
+    its(['total']){ should be 4}
+    its(['users']){ should be_a_kind_of Array}
   end
 
 end
