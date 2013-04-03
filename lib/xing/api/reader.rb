@@ -3,7 +3,7 @@ module Xing
     module Reader
 
       def network_feed options={}
-        path = person_path(options) + "/network_feed" + params(options).to_s        
+        path = person_path(options) + "/network_feed" + params(options).to_s
         raw_posts = get(path, options).fetch("network_activities", [])
         raw_posts.map{|post|
           Xing::Post.new(post)
@@ -13,7 +13,24 @@ module Xing
       def profile(options={})
         path = person_path(options)
         simple_query(path, options)
-      end 
+      end
+
+      def contacts options={}
+
+        options = {offset: 0, limit: 100}.merge(options)
+
+        path = "/users/me/contacts" + hash_to_params(options)
+
+        result = simple_query(path, options)['contacts']
+
+        # if we didn't fetch all contacts, fetch next page
+        new_offset = options[:offset] + options[:limit]
+        if result['total'].to_i > new_offset
+          result['users'] += contacts(options.merge(offset: new_offset))['users']
+        end
+
+        result
+      end
 
       protected
         DEFAULT_PARAMS = {
@@ -22,15 +39,18 @@ module Xing
         }
 
         def params options
-          params_str = ""
           params = options[:params] || {}
           params.merge!(DEFAULT_PARAMS)
-          params.each { |key, value| 
-            puts "#{key}=#{value}"
-            params_str << "#{key}=#{value}&"
-          }
-          ("?" + params_str.chop) unless (params_str == "")
+          hash_to_params params
         end
+
+      def hash_to_params hash
+        params_str = ""
+        hash.each { |key, value|
+          params_str << "#{key}=#{value}&"
+        }
+        ("?" + params_str.chop) unless (params_str == "")
+      end
 
       private
 

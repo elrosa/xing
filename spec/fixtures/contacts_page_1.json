@@ -1,0 +1,15 @@
+{
+    "contacts": {
+        "total": 5,
+        "users": [{
+            "display_name": "Christina Ahnefeld",
+            "id": "64060_b12067"
+        }, {
+            "display_name": "Hasso Sieber",
+            "id": "3167095_eb35c2"
+        }, {
+            "display_name": "Elmar Hinsenkamp",
+            "id": "3217478_24d6c7"
+        }]
+    }
+}
