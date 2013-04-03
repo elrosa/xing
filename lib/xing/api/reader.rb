@@ -16,11 +16,20 @@ module Xing
       end
 
       def contacts options={}
-        path = "/users/me/contacts"
-        if fields = options.delete(:user_fields)
-          path += "?user_fields=#{fields}"
+
+        options = {offset: 0, limit: 100}.merge(options)
+
+        path = "/users/me/contacts" + hash_to_params(options)
+
+        result = simple_query(path, options)['contacts']
+
+        # if we didn't fetch all contacts, fetch next page
+        new_offset = options[:offset] + options[:limit]
+        if result['total'].to_i > new_offset
+          result['users'] += contacts(options.merge(offset: new_offset))['users']
         end
-        simple_query(path, options)['contacts']
+
+        result
       end
 
       protected
@@ -30,15 +39,18 @@ module Xing
         }
 
         def params options
-          params_str = ""
           params = options[:params] || {}
           params.merge!(DEFAULT_PARAMS)
-          params.each { |key, value| 
-            puts "#{key}=#{value}"
-            params_str << "#{key}=#{value}&"
-          }
-          ("?" + params_str.chop) unless (params_str == "")
+          hash_to_params params
         end
+
+      def hash_to_params hash
+        params_str = ""
+        hash.each { |key, value|
+          params_str << "#{key}=#{value}&"
+        }
+        ("?" + params_str.chop) unless (params_str == "")
+      end
 
       private
 
