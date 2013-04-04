@@ -1,0 +1,28 @@
+{"conversation": {
+    "read_only": false,
+    "id": "492404154_a73d39",
+    "latest_messages": [
+        {
+            "id": "1800906016_389ee2",
+            "read": true,
+            "attachments": [],
+            "sender": {
+                "id": "7972634_0c811a"
+            },
+            "content": "sdf",
+            "created_at": "2013-04-04T10:58:31Z"
+        }
+    ],
+    "updated_at": "2013-04-04T10:58:31Z",
+    "subject": "testbla",
+    "unread_message_count": 0,
+    "message_count": 1,
+    "participants": [
+        {
+            "id": "7972634_0c811a"
+        },
+        {
+            "id": "11430772_3acd1b"
+        }
+    ]
+}}
