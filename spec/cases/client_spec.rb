@@ -44,4 +44,23 @@ describe Xing::Client do
       subject['users'].size.should == 5
     end
   end
+
+  describe '#create_conversation' do
+    let(:conversation_hash) { {content: 'msg', recipient_ids: [1, 2], subject: 'subject'} }
+    subject { client.create_conversation conversation_hash }
+
+    before do
+      stub_request(:post, "https://api.xing.com/v1/users/me/conversations?content=msg&recipient_ids=1,2&subject=subject").
+          to_return(:status => 200, :body => fixture("create_conversation_result.json"), :headers => {})
+    end
+
+    it { should be_a_kind_of Xing::Mash }
+    its(:read_only) { should be false }
+    its(:id) { should == "492404154_a73d39" }
+    its(:latest_messages) { should be_a_kind_of Array }
+    its('latest_messages.count') { should be 1 }
+    its('latest_messages.first') { should be_a_kind_of Xing::Mash }
+    its('participants.count') { should be 2 }
+    its('participants.first') { should be_a_kind_of Xing::Mash }
+  end
 end
