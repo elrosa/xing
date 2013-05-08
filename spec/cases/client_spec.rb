@@ -29,9 +29,9 @@ describe Xing::Client do
 
   describe "#contacts" do
     before do
-      stub_request(:get, "https://api.xing.com/v1/users/me/contacts?limit=3&offset=0").
+      stub_request(:get, "https://api.xing.com/v1%2Fusers%2Fme%2Fcontacts%3Foffset=3&limit=3").
           to_return(:status => 200, :body => fixture("contacts_page_1.json"), :headers => {})
-      stub_request(:get, "https://api.xing.com/v1/users/me/contacts?limit=3&offset=3").
+      stub_request(:get, "https://api.xing.com/v1%2Fusers%2Fme%2Fcontacts%3Foffset=0&limit=3").
           to_return(:status => 200, :body => fixture("contacts_page_2.json"), :headers => {})
     end
 
@@ -46,11 +46,11 @@ describe Xing::Client do
   end
 
   describe '#create_conversation' do
-    let(:conversation_hash) { {content: 'msg', recipient_ids: [1, 2], subject: 'subject'} }
+    let(:conversation_hash) { {content: 'msg', recipient_ids: [1, 2], subject: 'subject with special chars!'} }
     subject { client.create_conversation conversation_hash }
 
     before do
-      stub_request(:post, "https://api.xing.com/v1/users/me/conversations?content=msg&recipient_ids=1,2&subject=subject").
+      stub_request(:post, "https://api.xing.com/v1%2Fusers%2Fme%2Fconversations%3Fcontent=msg&recipient_ids=1,2&subject=subject+with+special+chars!").
           to_return(:status => 200, :body => fixture("create_conversation_result.json"), :headers => {})
     end
 
