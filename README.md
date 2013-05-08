@@ -1,7 +1,13 @@
 # xing
+
 Ruby wrapper for the [Xing API](https://dev.xing.com).
 
+## Supported Rubies
+
+Currently, only Ruby 2.0 is supported.
+
 ## Installation
+
     [sudo] gem install xing
 
 ## Usage
