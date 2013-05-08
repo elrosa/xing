@@ -1,4 +1,5 @@
 require 'multi_json'
+require 'uri'
 
 module Xing
   module Helpers
@@ -10,7 +11,7 @@ module Xing
       protected
 
       def escape path
-        CGI::escape path
+        URI.escape path
       end
 
 
