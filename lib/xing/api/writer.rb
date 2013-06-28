@@ -16,6 +16,14 @@ module Xing
 
         Xing::Mash.new(post("#{path}?#{args}")['conversation'])
       end
+
+
+      # @return [Hashie::Mash] with the response :code and :body from xing
+      # see https://dev.xing.com/docs/post/users/:id/status_message
+      def create_status_message(message)
+        path = "/users/me/status_message?message=#{message}"
+        Xing::Mash.new(post("#{path}"))
+      end
     end
   end
 end
