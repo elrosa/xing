@@ -63,4 +63,17 @@ describe Xing::Client do
     its('participants.count') { should be 2 }
     its('participants.first') { should be_a_kind_of Xing::Mash }
   end
+
+  describe '#create_status_message' do
+    subject { client.create_status_message('message with special chars!') }
+
+    before do
+      stub_request(:post, "https://api.xing.com/v1/users/me/status_message?message=message%20with%20special%20chars!").
+        to_return(:status => 201, :body => 'Status update has been posted', :headers => {})
+    end
+
+    it { should be_a_kind_of Xing::Mash }
+    its(:code) { should be 201 }
+    its(:body) { should == 'Status update has been posted' }
+  end
 end
