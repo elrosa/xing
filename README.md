@@ -4,7 +4,7 @@ Ruby wrapper for the [Xing API](https://dev.xing.com).
 
 ## Supported Rubies
 
-Currently, only Ruby 2.0 is supported.
+Currently, only Ruby 2.0 is supported, 1.9.3 does pass the tests.
 
 ## Installation
 
