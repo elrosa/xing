@@ -10,7 +10,7 @@ module Xing
         }
       end
 
-      def network_feed2(options={}since_time)
+      def network_feed2(options={},since_time)
         path = person_path(options) + "/network_feed"+"?since=#{since_time}" 
         raw_posts = get(path, options).fetch("network_activities", [])
         raw_posts.map{|post|
